@@ -1,14 +1,17 @@
 import React from 'react';
 
 import GlobalStyle from 'styles/Global';
+import Section from './styles';
 
-import styled from 'styled-components';
+import { CardRepository } from 'components';
 
 export default function Home() {
     return (
         <>
             <GlobalStyle />
-            <h1>Home Page</h1>
+            <Section>
+                <CardRepository />
+            </Section>
         </>
     );
 }
