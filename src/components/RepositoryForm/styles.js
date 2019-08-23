@@ -1,45 +1,41 @@
 import styled from 'styled-components';
 
+import Colors from 'styles/Colors';
+import Breakpoints from 'styles/Breakpoints';
+
 export const Form = styled.form`
     width: auto;
     height: auto;
     display: flex;
-    margin: 2rem 0 0 0;
+    margin: 1rem 0 0 0;
 `;
 
-export const InputRepository = styled.input`
-    width: 3rem;
-    height: 3rem;
+export const FormGroup = styled.div`
+    display: flex;
     flex: 1;
-    margin: 0 0.5rem 0 0;
-    padding: 1rem;
-    font-size: 1rem;
-    color: #7159c1;
-    border: 1px solid #eeeeee;
-    border-radius: 4px;
 
-    &:focus {
-        border-color: #7159c1;
-    }
+    ${Breakpoints.xs`
+        width: 100%;
+        flex-direction: column-reverse;
+        position: fixed;
+        bottom: 0;
+        margin: 0 0 3rem 0;
+        background-color: ${Colors.purples.light2};
+    `}
 
-    &:disabled {
-        color: #b3b3b3;
-    }
+    ${Breakpoints.xl`
+        width: initial;
+        flex-direction: column;
+        position: relative;
+        margin: 0;
+        background-color: transparent;
+    `}
 `;
 
-export const SubmitButton = styled.button`
-    width: 3rem;
-    height: 3rem;
-    color: white;
-    background-color: #7159c1;
-    border: none;
-    border-radius: 4px;
+export const Description = styled.small`
+    margin: 0.5rem 0 0 0.3rem;
+    color: ${Colors.greys.dark1};
 
-    &:disabled {
-        background-color: #b3b3b3;
-    }
-
-    svg {
-        vertical-align: middle;
-    }
+    ${Breakpoints.xs`display: none;`}
+    ${Breakpoints.xl`display: block;`}
 `;

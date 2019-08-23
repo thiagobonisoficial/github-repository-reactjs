@@ -1,12 +1,24 @@
 import styled from 'styled-components';
 
+import Breakpoints from 'styles/Breakpoints';
+
 const Container = styled.div`
     width: auto;
-    height: ${({ scroll }) => (scroll ? '40vh' : 'auto')};
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    margin: 1.5rem 0 0 0;
+
+    ${Breakpoints.xs`
+        height: 100vh;
+        margin: 0;
+        padding: 2.5rem 0 7rem 0;
+    `}
+
+    ${Breakpoints.xl`
+        height: 40vh;
+        margin: 1.5rem 0 0 0;
+        padding: 0;
+    `}
 `;
 
 export default Container;

@@ -1,18 +1,29 @@
 import styled from 'styled-components';
 
+import Colors from 'styles/Colors';
 import Breakpoints from 'styles/Breakpoints';
 
 const Container = styled.div`
     height: auto;
     display: flex;
     flex-direction: column;
-    padding: 2rem;
     background-color: white;
-    border-radius: 4px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 
-    ${Breakpoints.xs`width: 90%;`}
-    ${Breakpoints.xl`width: 50%;`}
+    ${Breakpoints.xs`
+        width: 100%;
+        padding: 0;
+        border-radius: 0;
+        box-shadow: none;
+
+    `}
+
+    ${Breakpoints.xl`
+        width: 50%;
+        padding: 2rem;
+        border-radius: 4px;
+        box-shadow: 0 0 20px ${Colors.blacks.transparent};
+    `}
+
     ${Breakpoints.ultraHD`width: 30%;`}
 `;
 

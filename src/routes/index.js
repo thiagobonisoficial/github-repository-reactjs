@@ -9,7 +9,7 @@ export default function Routes() {
             <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/home" component={Home} />
-                <Route exact path="/repository/:id" component={Repository} />
+                <Route exact path="/repository" component={Repository} />
                 <Route path="*" component={Error404} />
             </Switch>
         </BrowserRouter>

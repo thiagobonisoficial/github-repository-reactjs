@@ -1,5 +1,16 @@
 import React from 'react';
 
+import GlobalStyle from 'styles/Global';
+import Section from './styles';
+import { CardIssue } from 'components';
+
 export default function Repository() {
-    return <h1>Repository Page</h1>;
+    return (
+        <>
+            <GlobalStyle />
+            <Section>
+                <CardIssue />
+            </Section>
+        </>
+    );
 }

@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 const Img = styled.img`
-    width: 2rem;
-    height: 2rem;
-    margin-bottom: 0.2rem;
+    width: ${({ theme }) => theme.width};
+    height: ${({ theme }) => theme.height};
+    margin: ${({ margin }) => margin};
     border-radius: 50%;
     object-fit: cover;
     vertical-align: middle;

@@ -1,57 +1,38 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import Container from './styles';
-
 import { Repository } from 'components';
 
-export default class RepositoryList extends Component {
-    state = {
-        scroll: false,
-        repositoryData: [
-            {
-                owner: 'facebook',
-                repository: 'react',
-                src: 'https://avatars3.githubusercontent.com/u/69631?v=4',
-                alt: 'facebook/react',
-            },
-            {
-                owner: 'facebook2',
-                repository: 'react',
-                src: 'https://avatars3.githubusercontent.com/u/69631?v=4',
-                alt: 'facebook/react',
-            },
-            {
-                owner: 'facebook3',
-                repository: 'react',
-                src: 'https://avatars3.githubusercontent.com/u/69631?v=4',
-                alt: 'facebook/react',
-            },
-            {
-                owner: 'facebook4',
-                repository: 'react',
-                src: 'https://avatars3.githubusercontent.com/u/69631?v=4',
-                alt: 'facebook/react',
-            },
-        ],
-    };
-
-    render() {
-        return (
-            <Container scroll={this.state.scroll}>
-                {this.state.repositoryData.map(
-                    ({ owner, repository, src, alt }) => {
-                        return (
-                            <Repository
-                                key={`${owner}/${repository}`}
-                                owner={owner}
-                                repository={repository}
-                                src={src}
-                                alt={alt}
-                            />
-                        );
-                    }
-                )}
-            </Container>
-        );
-    }
+function RepositoryList({ data }) {
+    return (
+        <Container>
+            {data.map(({ full_name, name, owner: { avatar_url, login } }) => {
+                return (
+                    <Repository
+                        key={full_name}
+                        full_name={full_name}
+                        owner={login}
+                        repository={name}
+                        avatar={avatar_url}
+                    />
+                );
+            })}
+        </Container>
+    );
 }
+
+RepositoryList.propTypes = {
+    data: PropTypes.arrayOf(
+        PropTypes.shape({
+            full_name: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
+            owner: PropTypes.shape({
+                avatar_url: PropTypes.string.isRequired,
+                login: PropTypes.string.isRequired,
+            }).isRequired,
+        }).isRequired
+    ).isRequired,
+};
+
+export default RepositoryList;

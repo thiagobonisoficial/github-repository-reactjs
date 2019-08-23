@@ -1,54 +1,43 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import { Form, InputRepository, SubmitButton } from './styles';
-import { FaPlus } from 'react-icons/fa';
+import { Form, FormGroup, Description } from './styles';
+import { InputRepository, SubmitButton } from 'components';
 
-export default class RepositoryForm extends Component {
-    state = {
-        inputValue: '',
-        inputIsDisabled: false,
-        btnIsDisabled: true,
-    };
-
-    onChange = e => {
-        this.setState({ inputValue: e.target.value }, () => {
-            this.state.inputValue !== ''
-                ? this.setState({ btnIsDisabled: false })
-                : this.setState({ btnIsDisabled: true });
-        });
-    };
-
-    onSubmit = e => {
-        e.preventDefault();
-    };
-
-    onClick = () => {
-        this.setState({
-            btnIsDisabled: true,
-            inputIsDisabled: true,
-        });
-    };
-
-    render() {
-        return (
-            <Form onSubmit={this.onSubmit} noValidate>
+function RepositoryForm({
+    onChange,
+    onSubmit,
+    inputValue,
+    inputIsDisabled,
+    loading,
+    btnIsDisabled,
+    errorAPI,
+}) {
+    return (
+        <Form onSubmit={onSubmit} noValidate>
+            <FormGroup>
                 <InputRepository
-                    type="text"
-                    placeholder="Add repository, example: facebook/react"
-                    onChange={this.onChange}
-                    maxLength={20}
-                    disabled={this.state.inputIsDisabled}
-                    autoFocus
-                    required
+                    onChange={onChange}
+                    value={inputValue}
+                    disabled={inputIsDisabled}
+                    error={errorAPI}
                 />
-                <SubmitButton
-                    type="submit"
-                    onClick={this.onClick}
-                    disabled={this.state.btnIsDisabled}
-                >
-                    <FaPlus size={15} />
-                </SubmitButton>
-            </Form>
-        );
-    }
+                <Description>Example: facebook/react</Description>
+            </FormGroup>
+
+            <SubmitButton loading={loading} disabled={btnIsDisabled} />
+        </Form>
+    );
 }
+
+RepositoryForm.propTypes = {
+    onChange: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired,
+    inputValue: PropTypes.string.isRequired,
+    inputIsDisabled: PropTypes.bool.isRequired,
+    loading: PropTypes.bool.isRequired,
+    btnIsDisabled: PropTypes.bool.isRequired,
+    errorAPI: PropTypes.bool.isRequired,
+};
+
+export default RepositoryForm;
