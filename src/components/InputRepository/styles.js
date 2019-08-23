@@ -3,17 +3,16 @@ import styled from 'styled-components';
 import Colors from 'styles/Colors';
 import Breakpoints from 'styles/Breakpoints';
 
+// prettier-ignore
 const Input = styled.input`
     width: auto;
     height: 3rem;
     padding: 1rem;
     font-size: 1rem;
-    border: ${({ error }) =>
-        error ? '1px solid red' : `1px solid ${Colors.greys.light1}`};
+    border: ${({ error }) => error ? '1px solid red' : `1px solid ${Colors.greys.light1}`};
 
     &:focus {
-        border-color: ${({ error }) =>
-            error ? 'red' : `${Colors.purples.light2}`};
+        border-color: ${({ error }) => error ? 'red' : `${Colors.purples.light2}`};
     }
 
     &:disabled {
@@ -30,8 +29,7 @@ const Input = styled.input`
 
     ${Breakpoints.xl`
         margin: 0 0.5rem 0 0;
-        border: ${({ error }) =>
-            error ? '1px solid red' : `1px solid ${Colors.greys.light1}`};
+        border: ${({ error }) => error ? '1px solid red' : `1px solid ${Colors.greys.light1}`};
         border-radius: 4px;
     `}
 `;

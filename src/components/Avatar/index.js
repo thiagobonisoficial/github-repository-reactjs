@@ -13,10 +13,14 @@ function Avatar({ src, alt, theme, margin }) {
     );
 }
 
+Avatar.defaultProps = {
+    theme: 'large',
+};
+
 Avatar.propTypes = {
     src: PropTypes.string.isRequired,
     alt: PropTypes.string.isRequired,
-    theme: PropTypes.string.isRequired,
+    theme: PropTypes.string,
     margin: PropTypes.string,
 };
 

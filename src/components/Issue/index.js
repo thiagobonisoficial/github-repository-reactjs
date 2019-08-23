@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import {
     Item,
@@ -7,58 +8,40 @@ import {
     BadgesContainer,
     Username,
 } from './styles';
-import { Avatar, Badge } from 'components';
+import { Avatar, LabelList } from 'components';
 
-export default function Issue({ userAvatar, username, issueTitle }) {
+function Issue({ title, labels, user: { avatar_url, login } }) {
     return (
         <>
             <Item>
                 <Avatar
-                    src={userAvatar}
-                    alt={`${username} AVATAR`}
+                    src={avatar_url}
+                    alt={`${login} AVATAR`}
                     theme="small"
                     margin="0 0 0 1.5rem"
                 />
 
                 <Container>
                     <InformationContainer>
-                        <h4>{issueTitle}</h4>
-                        <Username>{username}</Username>
+                        <h4>{title}</h4>
+                        <Username>{login}</Username>
                     </InformationContainer>
                     <BadgesContainer>
-                        <Badge theme="light" margin=".3rem 0 0 .3rem">
-                            docs
-                        </Badge>
-                        <Badge theme="light" margin=".3rem 0 0 .3rem">
-                            docs
-                        </Badge>
-                        <Badge theme="light" margin=".3rem 0 0 .3rem">
-                            docs
-                        </Badge>
-                        <Badge theme="light" margin=".3rem 0 0 .3rem">
-                            docs
-                        </Badge>
-                        <Badge theme="light" margin=".3rem 0 0 .3rem">
-                            docs
-                        </Badge>
-                        <Badge theme="light" margin=".3rem 0 0 .3rem">
-                            docs
-                        </Badge>
-                        <Badge theme="light" margin=".3rem 0 0 .3rem">
-                            docs
-                        </Badge>
-                        <Badge theme="light" margin=".3rem 0 0 .3rem">
-                            docs
-                        </Badge>
-                        <Badge theme="light" margin=".3rem 0 0 .3rem">
-                            docs
-                        </Badge>
-                        <Badge theme="light" margin=".3rem 0 0 .3rem">
-                            docs
-                        </Badge>
+                        <LabelList data={labels} />
                     </BadgesContainer>
                 </Container>
             </Item>
         </>
     );
 }
+
+Issue.propTypes = {
+    title: PropTypes.string.isRequired,
+    labels: PropTypes.array.isRequired,
+    user: PropTypes.shape({
+        avatar_url: PropTypes.string.isRequired,
+        login: PropTypes.string.isRequired,
+    }).isRequired,
+};
+
+export default Issue;

@@ -13,8 +13,12 @@ function Badge({ theme, children, margin }) {
     );
 }
 
+Badge.defaultProps = {
+    theme: 'light',
+};
+
 Badge.propTypes = {
-    theme: PropTypes.string.isRequired,
+    theme: PropTypes.string,
     children: PropTypes.string.isRequired,
     margin: PropTypes.string,
 };

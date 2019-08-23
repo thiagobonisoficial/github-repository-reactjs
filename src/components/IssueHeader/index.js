@@ -4,30 +4,26 @@ import PropTypes from 'prop-types';
 import { Header, Hyperlink, Description } from './styles';
 import { Avatar } from 'components';
 
-function IssueHeader({
-    repositoryAvatar,
-    repositoryName,
-    repositoryDescription,
-}) {
+function IssueHeader({ avatar, name, description }) {
     return (
         <Header>
             <Hyperlink to="/home">Voltar aos repositórios</Hyperlink>
             <Avatar
-                src={repositoryAvatar}
-                alt={`${repositoryName} AVATAR`}
+                src={avatar}
+                alt={`${name} AVATAR`}
                 theme="large"
                 margin="1rem"
             />
-            <h3>{repositoryName}</h3>
-            <Description>{repositoryDescription}</Description>
+            <h3>{name}</h3>
+            <Description>{description}</Description>
         </Header>
     );
 }
 
 IssueHeader.propTypes = {
-    repositoryAvatar: PropTypes.string.isRequired,
-    repositoryName: PropTypes.string.isRequired,
-    repositoryDescription: PropTypes.string.isRequired,
+    avatar: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
 };
 
 export default IssueHeader;

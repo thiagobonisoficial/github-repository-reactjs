@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 
+import {
+    hasLocalStorage,
+    hasRepository,
+    getRepositories,
+    setRepositories,
+} from 'services/LocalStorage';
 import { getRepository } from 'services/GithubAPI';
 
 import {
@@ -14,6 +20,7 @@ export default class CardRepository extends Component {
         inputValue: '',
         inputIsDisabled: false,
         btnIsDisabled: true,
+        hasLocalStorage: hasLocalStorage(),
         loading: false,
         errorAPI: false,
         errorAPIMsg: '',
@@ -22,22 +29,19 @@ export default class CardRepository extends Component {
 
     // LIFE CYCLE
     componentDidMount() {
-        const repositories = JSON.parse(localStorage.getItem('repositories'));
-
-        if (repositories) {
-            this.setState({ repositoryList: repositories });
+        if (this.state.hasLocalStorage) {
+            this.setState({ repositoryList: getRepositories() });
         }
     }
 
     componentDidUpdate(_, prevState) {
         if (prevState.repositoryList !== this.state.repositoryList) {
-            // prettier-ignore
-            localStorage.setItem('repositories', JSON.stringify(this.state.repositoryList));
+            setRepositories(this.state.repositoryList);
         }
     }
 
     // METHODS
-    onChange = e => {
+    handleOnChange = e => {
         this.setState({ inputValue: e.target.value }, () => {
             this.state.inputValue !== ''
                 ? this.setState({ btnIsDisabled: false })
@@ -45,18 +49,32 @@ export default class CardRepository extends Component {
         });
     };
 
-    onSubmit = e => {
+    handleOnSubmit = e => {
         e.preventDefault();
 
-        this.handleStartSubmit();
-
         // prettier-ignore
-        this.hasEqualRepository(this.state.inputValue)
-            ? this.handleError('A repository corresponding to this already exists.')
-            : this.handleCallAPI();
+        this.setState({
+            inputIsDisabled: true,
+            btnIsDisabled: true,
+            loading: true,
+        }, () => {
+           hasRepository(this.state.inputValue)
+           ? this.handleError( 'A repository corresponding to this already exists.')
+           : this.callAPI();
+        });
     };
 
-    handleCallAPI = async () => {
+    handleError = message => {
+        this.setState({
+            inputIsDisabled: false,
+            btnIsDisabled: false,
+            loading: false,
+            errorAPI: true,
+            errorAPIMsg: message,
+        });
+    };
+
+    callAPI = async () => {
         try {
             const response = await getRepository(this.state.inputValue);
             const { data } = response;
@@ -72,44 +90,7 @@ export default class CardRepository extends Component {
         } catch (error) {
             const { message, response } = error;
 
-            // prettier-ignore
             this.handleError(response !== undefined ? response.data : message);
-        }
-    };
-
-    handleStartSubmit = () => {
-        this.setState({
-            inputIsDisabled: true,
-            btnIsDisabled: true,
-            loading: true,
-        });
-    };
-
-    handleError = message => {
-        this.setState({
-            inputIsDisabled: false,
-            btnIsDisabled: false,
-            loading: false,
-            errorAPI: true,
-            errorAPIMsg: message,
-        });
-    };
-
-    hasEqualRepository = repositoryId => {
-        const repositories = JSON.parse(localStorage.getItem('repositories'));
-
-        if (repositories.length === 0) {
-            return false;
-        } else {
-            let bool = false;
-
-            repositories.forEach(({ full_name }) => {
-                if (repositoryId === full_name) {
-                    bool = true;
-                }
-            });
-
-            return bool;
         }
     };
 
@@ -118,15 +99,18 @@ export default class CardRepository extends Component {
             <Card>
                 <RepositoryHeader />
                 <RepositoryForm
-                    onChange={this.onChange}
-                    onSubmit={this.onSubmit}
+                    onChange={this.handleOnChange}
+                    onSubmit={this.handleOnSubmit}
                     inputValue={this.state.inputValue}
                     inputIsDisabled={this.state.inputIsDisabled}
                     btnIsDisabled={this.state.btnIsDisabled}
                     loading={this.state.loading}
                     errorAPI={this.state.errorAPI}
                 />
-                <RepositoryList data={this.state.repositoryList} />
+
+                {this.state.repositoryList && (
+                    <RepositoryList data={this.state.repositoryList} />
+                )}
             </Card>
         );
     }

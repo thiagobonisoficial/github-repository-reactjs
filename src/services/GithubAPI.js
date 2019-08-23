@@ -8,3 +8,12 @@ const instance = Axios.create({
 export function getRepository(repository) {
     return instance.get(repository);
 }
+
+export function getIssues(repository) {
+    return instance.get(`${repository}/issues`, {
+        params: {
+            state: 'open',
+            per_page: 5,
+        },
+    });
+}
