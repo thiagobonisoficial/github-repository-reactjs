@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {
-    Container,
+    Item,
     InformationContainer,
     NavLinkContainer,
     Title,
@@ -12,7 +12,7 @@ import { Avatar } from 'components';
 
 function Repository({ full_name, owner, repository, avatar }) {
     return (
-        <Container>
+        <Item>
             <InformationContainer>
                 <Avatar
                     src={avatar}
@@ -33,7 +33,7 @@ function Repository({ full_name, owner, repository, avatar }) {
                     Detalhes
                 </Hyperlink>
             </NavLinkContainer>
-        </Container>
+        </Item>
     );
 }
 

@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import Colors from 'styles/Colors';
 import Breakpoints from 'styles/Breakpoints';
 
-export const Container = styled.div`
+export const Item = styled.li`
     width: auto;
     height: auto;
     display: flex;

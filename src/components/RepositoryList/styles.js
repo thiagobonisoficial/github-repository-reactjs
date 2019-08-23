@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import Breakpoints from 'styles/Breakpoints';
 
-const Container = styled.div`
+const List = styled.ul`
     width: auto;
     display: flex;
     flex-direction: column;
@@ -21,4 +21,4 @@ const Container = styled.div`
     `}
 `;
 
-export default Container;
+export default List;

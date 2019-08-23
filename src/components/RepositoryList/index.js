@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Container from './styles';
+import List from './styles';
 import { Repository } from 'components';
 
 function RepositoryList({ data }) {
     return (
-        <Container>
+        <List>
             {data.map(({ full_name, name, owner: { avatar_url, login } }) => {
                 return (
                     <Repository
@@ -18,7 +18,7 @@ function RepositoryList({ data }) {
                     />
                 );
             })}
-        </Container>
+        </List>
     );
 }
 
