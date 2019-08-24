@@ -8,8 +8,8 @@ const Themes = {
         height: '3rem',
     },
     large: {
-        width: '5rem',
-        height: '5rem',
+        width: '4rem',
+        height: '4rem',
     },
 };
 

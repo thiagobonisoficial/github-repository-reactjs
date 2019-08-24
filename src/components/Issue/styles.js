@@ -26,9 +26,12 @@ export const Container = styled.div`
     flex: 1;
 `;
 
-export const InformationContainer = styled.div`
+export const OwnerContainer = styled.div`
     display: flex;
     margin: 0 0 0 1rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 
     ${Breakpoints.xs`
         flex-direction: column-reverse;
@@ -44,12 +47,19 @@ export const BadgesContainer = styled.div`
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin: 0.4rem 0 0 0.71rem;
 
-    ${Breakpoints.xs`justify-content: center;`}
-    ${Breakpoints.md`justify-content: flex-start;`}
+    ${Breakpoints.xs`
+        justify-content: center;
+        margin: .5rem 0 .5rem 0;
+    `}
+
+    ${Breakpoints.md`
+        justify-content: flex-start;
+        margin: 0.4rem 0 0 0.71rem;
+    `}
 `;
 
 export const Username = styled.small`
-    margin: 0.08rem 0 0 0.6rem;
+    ${Breakpoints.xs`margin: .5rem 0 .5rem 0;`}
+    ${Breakpoints.md`margin: 0.08rem 0 0 0.6rem;`}
 `;

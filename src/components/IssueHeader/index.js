@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Header, Hyperlink, Description } from './styles';
+import { Header, Hyperlink, Title, Description } from './styles';
 import { Avatar } from 'components';
 
 function IssueHeader({ avatar, name, description }) {
@@ -14,7 +14,7 @@ function IssueHeader({ avatar, name, description }) {
                 theme="large"
                 margin="1rem"
             />
-            <h3>{name}</h3>
+            <Title>{name}</Title>
             <Description>{description}</Description>
         </Header>
     );

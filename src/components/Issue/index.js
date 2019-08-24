@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {
     Item,
     Container,
-    InformationContainer,
+    OwnerContainer,
     BadgesContainer,
     Username,
 } from './styles';
@@ -17,15 +17,15 @@ function Issue({ title, labels, user: { avatar_url, login } }) {
                 <Avatar
                     src={avatar_url}
                     alt={`${login} AVATAR`}
-                    theme="small"
-                    margin="0 0 0 1.5rem"
+                    theme="large"
+                    margin="0 0 0 .5rem"
                 />
 
                 <Container>
-                    <InformationContainer>
+                    <OwnerContainer>
                         <h4>{title}</h4>
                         <Username>{login}</Username>
-                    </InformationContainer>
+                    </OwnerContainer>
                     <BadgesContainer>
                         <LabelList data={labels} />
                     </BadgesContainer>
