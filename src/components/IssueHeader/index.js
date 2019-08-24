@@ -7,7 +7,7 @@ import { Avatar } from 'components';
 function IssueHeader({ avatar, name, description }) {
     return (
         <Header>
-            <Hyperlink to="/home">Voltar aos repositórios</Hyperlink>
+            <Hyperlink to="/home">Back to repositories</Hyperlink>
             <Avatar
                 src={avatar}
                 alt={`${name} AVATAR`}

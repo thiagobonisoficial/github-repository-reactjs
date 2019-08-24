@@ -27,11 +27,9 @@ export const Container = styled.div`
 `;
 
 export const OwnerContainer = styled.div`
+    width: 30rem;
     display: flex;
     margin: 0 0 0 1rem;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
 
     ${Breakpoints.xs`
         flex-direction: column-reverse;
@@ -59,6 +57,11 @@ export const BadgesContainer = styled.div`
     `}
 `;
 
+export const Title = styled.h4`
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+`;
 export const Username = styled.small`
     ${Breakpoints.xs`margin: .5rem 0 .5rem 0;`}
     ${Breakpoints.md`margin: 0.08rem 0 0 0.6rem;`}

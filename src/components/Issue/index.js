@@ -6,6 +6,7 @@ import {
     Container,
     OwnerContainer,
     BadgesContainer,
+    Title,
     Username,
 } from './styles';
 import { Avatar, LabelList } from 'components';
@@ -14,16 +15,18 @@ function Issue({ title, labels, user: { avatar_url, login } }) {
     return (
         <>
             <Item>
-                <Avatar
-                    src={avatar_url}
-                    alt={`${login} AVATAR`}
-                    theme="large"
-                    margin="0 0 0 .5rem"
-                />
+                <div>
+                    <Avatar
+                        src={avatar_url}
+                        alt={`${login} AVATAR`}
+                        theme="large"
+                        margin="0 0 0 .5rem"
+                    />
+                </div>
 
                 <Container>
                     <OwnerContainer>
-                        <h4>{title}</h4>
+                        <Title>{title}</Title>
                         <Username>{login}</Username>
                     </OwnerContainer>
                     <BadgesContainer>

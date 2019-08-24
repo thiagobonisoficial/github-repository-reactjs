@@ -30,7 +30,7 @@ function Repository({ full_name, owner, repository, avatar }) {
                         search: `?owner=${owner}&repos=${repository}`,
                     }}
                 >
-                    Detalhes
+                    Details
                 </Hyperlink>
             </NavLinkContainer>
         </Item>
